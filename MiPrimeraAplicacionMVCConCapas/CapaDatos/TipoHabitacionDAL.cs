@@ -32,7 +32,7 @@ namespace CapaDatos
         //}
         public List<TipoHabitacionCLS> listarTipoHabitacion() {
             List<TipoHabitacionCLS> lista = null;
-            using (SqlConnection cn  = new SqlConnection("server=DESKTOP-DOBBGRU;database=BDHotel;Integrated Security=true;"))
+            using (SqlConnection cn = new SqlConnection("server=DESKTOP-DOBBGRU;database=BDHotel;User Id=sa;Password=123p;Trusted_Connection=True"))//importante para usar autenticacion de sql server Trusted_Connection=true
             {//si fuera autenticacion windows Integrated Security=true
                 try
                 {
@@ -48,13 +48,21 @@ namespace CapaDatos
                         if (drd != null)
                         {
                             lista = new List<TipoHabitacionCLS>();
+                            TipoHabitacionCLS oTipoHabitacionCLS;
                             while (drd.Read())
                             {
+                                //en el datareader la enumeracion inicia en cero
+                                oTipoHabitacionCLS = new TipoHabitacionCLS();
+                                oTipoHabitacionCLS.id = drd.GetInt32(0);  
+                                oTipoHabitacionCLS.nombre = drd.GetString(1);
+                                oTipoHabitacionCLS.descripcion = drd.GetString(2);
+                                lista.Add(oTipoHabitacionCLS);
+
                             }
                         }
-                        //Cierro una vez de traer la data
-                        cn.Close();
                     }
+                    //Cierro una vez de traer la data
+                    cn.Close();
                 }
 
                 catch (Exception ex)
