@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CapaEntidades;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace CapaDatos
 {
@@ -32,7 +33,8 @@ namespace CapaDatos
         //}
         public List<TipoHabitacionCLS> listarTipoHabitacion() {
             List<TipoHabitacionCLS> lista = null;
-            using (SqlConnection cn = new SqlConnection("server=DESKTOP-DOBBGRU;database=BDHotel;User Id=sa;Password=123p;Trusted_Connection=True"))//importante para usar autenticacion de sql server Trusted_Connection=true
+            string cadena = ConfigurationManager.ConnectionStrings["cn"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(cadena))//importante para usar autenticacion de sql server Trusted_Connection=true
             {//si fuera autenticacion windows Integrated Security=true
                 try
                 {
