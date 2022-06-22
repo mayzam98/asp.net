@@ -1,7 +1,6 @@
 ﻿//consumo
 window.onload = function () {
-    listarTipoHabitacion();
-
+    //listarTipoHabitacion();
 }
 //[{"id":1,"nombre":"simple","descripcion":"Solo para uno"},{"id":1,"nombre":"doble","descripcion":"Para dos"}]
 function listarTipoHabitacion() {
